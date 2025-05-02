@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Semester Info";
+}
+
+<div class="advisor main-section">
+    <div class="container">
+        <h1 class="heading text-center m-1">Welcome!</h1>
+        <div class="d-flex">
+            <div class="info w-100 align-content-center ">
+                
+                <div>
+                    <p class="fs-4">We are now in <span class="text-success fw-bold">@ViewData["semester"] @ViewData["year"]</span> !</p>
+                </div>
+                <div class="mt-5">
+                    <p class="fs-4">Click to <span class="text-success fw-bold">Generate</span> the student schedules and the instructors/teaching assistants schedules</p>
+                </div>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="mt-5 alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="mt-5 alert alert-danger">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+
+                <!-- Button to trigger the AI Training -->
+                <form method="post" asp-action="TrainScheduler" asp-controller="Ai">
+                    <button type="submit" class="btn btn-success btn-lg mt-3">Generate Schedules</button>
+                </form>
+
+            </div>
+            <div class="image w-100">
+                <img class="w-100" src="~/images/advising.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/advisor.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

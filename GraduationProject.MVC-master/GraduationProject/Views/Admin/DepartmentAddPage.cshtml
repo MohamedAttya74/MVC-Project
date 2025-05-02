@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Add Department";
+    var colleges = ViewData["Colleges"] as IEnumerable<College>;
+    var heads = ViewData["Heads"] as IEnumerable<FacultyMember>;
+}
+@model Department
+
+<section class="container add-department" style="width: 800px;">
+    <div class="back-button position-absolute">
+        <a class="text-primary m-3 d-block" asp-action="Dashboard" asp-controller="Admin"><i class="fa-2x fa-solid fa-arrow-left"></i></a>
+    </div>
+    <h1 class="fs-4 m-3 py-3 px-5">Add Department</h1>
+    <form asp-controller="Department" asp-action="Add" method="post" class="m-auto p-4">
+        <div class="mb-3">
+            <label class="form-label" for="Name">Department Name</label>
+            <input class="form-control" name="Name" id="Name" type="text">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="CollegeId">College</label>
+            <select class="form-control" name="CollegeId" id="CollegeId">
+                <option value="0" selected>Choose..</option>
+                @if(colleges is not null ){
+                @foreach(var col in colleges) {
+                    <option value="@col.Id">@col.Name</option>
+                }}
+            </select>
+            <span asp-validation-for="CollegeId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="HeadId">Head Department</label>
+            <select class="form-control" name="HeadId" id="HeadId">
+                <option value="0" selected>Choose..</option>
+                @if(heads is not null){
+                @foreach (var head in heads)
+                {
+                    <option value="@head.TeacherId">@head.FirstName @head.MiddleName @head.LastName</option>
+                }}
+            </select>
+            <span asp-validation-for="HeadId" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

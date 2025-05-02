@@ -1,0 +1,22 @@
+﻿[
+  {
+    "SSN": "1234567890123456", 
+    "FirstName": "Mohamed",
+    "MiddleName": "Ahmed",
+    "LastName": "Mostafa",
+    "Salary": 5000.00,
+    "MobilePhone": "01234567890", 
+    "Address": "Cairo, Maadi",
+    "Gender": 0
+  },
+  {
+    "SSN": "9876543210987654",
+    "FirstName": "Jana",
+    "MiddleName": "Mohamed",
+    "LastName": "Ali",
+    "Salary": 5500.50,
+    "MobilePhone": "01123456789",
+    "Address": "Cairo, Mokattam",
+    "Gender": 1
+  }
+]

@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Add Course";
+    var deps = ViewData["Departments"] as IEnumerable<Department>;  
+}
+@model Course
+<section class="container add-course" style="width: 800px;">
+    <div class="back-button position-absolute">
+        <a class="text-primary m-3 d-block" asp-action="Dashboard" asp-controller="Admin">
+            <i class="fa-2x fa-solid fa-arrow-left"></i></a>
+    </div>
+    <h1 class="fs-4 m-3 py-3 px-5">Add Course</h1>
+    <form asp-controller="Course" asp-action="Add" method="post" class="m-auto p-4">
+        <div class="mb-3">
+            <label class="form-label" for="Code">Course Code</label>
+            <input class="form-control" name="Code" id="Code" type="text">
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="Name">Course Name</label>
+            <input class="form-control" name="Name" id="Name" type="text">
+            <span asp-validation-for="CourseName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="CreditHour">Credit Hour</label>
+            <input class="form-control" name="CreditHour" id="CreditHour" type="number">
+            <span asp-validation-for="CreditHour" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="NoOfSec">Number of Sections</label>
+            <input class="form-control" name="NoOfSec" id="NoOfSec" type="number">
+            <span asp-validation-for="NoOfSec" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="NoOfLec">Number of Lectures</label>
+            <input class="form-control" name="NoOfLec" id="NoOfLec" type="number">
+            <span asp-validation-for="NoOfLec" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="Level">Level</label>
+            <input class="form-control" name="Level" id="Level" type="text">
+            <span asp-validation-for="Level" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="DepId">Department</label>
+            <select class="form-control" name="DepId" id="DepId">
+                <option value="0" selected>Choose..</option>
+                @foreach (var dep in deps)
+                {
+                    <option value="@dep.Id">@dep.Name | College: @dep.College.Name</option>
+                }
+
+            </select>
+            <span asp-validation-for="DeptId" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

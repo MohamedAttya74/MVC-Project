@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Computer Science",
+    "CollegeId": 1,
+    "HeadId": "I11"
+  },
+  {
+    "Name": "Artificial Intelligence",
+    "CollegeId": 1,
+    "HeadId": "I15"
+  },
+  {
+    "Name": "Information Systems",
+    "CollegeId": 1,
+    "HeadId": "I1"
+  },
+  {
+    "Name": "General",
+    "CollegeId": 1,
+    "HeadId": null
+  }
+]

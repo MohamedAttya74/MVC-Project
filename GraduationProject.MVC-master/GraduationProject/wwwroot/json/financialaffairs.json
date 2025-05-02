@@ -1,0 +1,35 @@
+[
+  {
+    "SSN": "6677889900112233",
+    "FirstName": "Mona",
+    "MiddleName": "Hassan",
+    "LastName": "Ibrahim",
+    "Salary": 5300.75,
+    "MobilePhone": "01266778899",
+    "Address": "Giza, Haram",
+    "Gender": 1,
+    "ManagerId": null
+  },
+  {
+    "SSN": "7788690011203344",
+    "FirstName": "Omar",
+    "MiddleName": "Nour",
+    "LastName": "Saad",
+    "Salary": 5500.00,
+    "MobilePhone": "01577889900",
+    "Address": "Mansoura, Aga",
+    "Gender": 0,
+    "ManagerId": 1
+  },
+  {
+    "SSN": "7783990011228344",
+    "FirstName": "Hamed",
+    "MiddleName": "Mohamed",
+    "LastName": "Saad",
+    "Salary": 5500.00,
+    "MobilePhone": "01577889900",
+    "Address": "Mansoura, Aga",
+    "Gender": 0,
+    "ManagerId": 1
+  }
+]

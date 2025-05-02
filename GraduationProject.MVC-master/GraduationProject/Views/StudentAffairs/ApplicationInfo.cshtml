@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Application Info";
+    var app = ViewData["App"] as Application;
+    var student = ViewData["Student"] as Student;
+}
+
+<div class="container d-flex justify-content-start py-5">
+    <div class="w-50 m-auto bg-white ">
+        <h2 class="text-center mb-4">Application</h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>First Name:</td>
+                <td id="FirstName">@student.FirstName</td>
+            </tr>
+
+            <tr>
+                <td>Middle Name:</td>
+                <td id="MiddleName">@student.MiddleName</td>
+        </tr>
+
+            <tr>
+                <td>Last Name:</td>
+                <td id="LastName">@student.LastName</td>
+</tr>
+
+            <tr>
+                <td>SSN:</td>
+                <td id="SSN">@student.SSN</td>
+</tr>
+
+            <tr>
+                <td>Mobile Phone:</td>
+                <td id="MobilePhone">@student.MobilePhone</td>
+</tr>
+
+            <tr>
+                <td>Home Phone:</td>
+                <td id="HomePhone">@student.HomePhone</td>
+</tr>
+
+            <tr>
+                <td>High School Grade:</td>
+                <td id="HighSchoolGrade">@student.HighSchoolGrade</td>
+</tr>
+
+            <tr>
+                <td>Address:</td>
+                <td id="Address">@student.Address</td>
+</tr>
+
+            <tr>
+                <td>Choosen College:</td>
+                <td id="College">@student.College.Name</td>
+            </tr>
+
+            <tr>
+                <td>Date of Birth:</td>
+                <td id="Birth">@student.BirthDate</td>
+            </tr>
+
+            <tr>
+                <td>Gender:</td>
+                <td id="Gender">@student.Gender</td>
+            </tr>
+
+        <tr>
+            <td colspan="2" class="m-auto text-center">
+                <a class="btn btn-success m-auto" asp-controller="StudentAffairs" asp-action="ApproveApplication" asp-route-id="@app.Id">Approve</a>
+                <a class="btn btn-danger m-auto" asp-controller="StudentAffairs" asp-action="RejectApplication" asp-route-id="@app.Id">Reject</a>
+            </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

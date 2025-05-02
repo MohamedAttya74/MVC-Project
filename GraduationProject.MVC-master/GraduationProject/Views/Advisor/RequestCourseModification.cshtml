@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Request Course Modification";
+}
+
+<section class="container request-dep">
+        <div class="back-button position-absolute">
+        <a class="text-primary m-3 d-block" asp-action="Dashboard" asp-controller="Advisor">
+            <i class="fa-2x fa-solid fa-arrow-left"></i></a>
+        </div>
+        <h1 class="fs-4 m-3 px-5">Request Course Modification</h1>
+    <form method="post" asp-controller="Advisor" asp-action="RequestCourseModification" class="w-50 py-4">
+            <div class="mb-3">
+                <label class="form-label" for="code">Course Code</label>
+                <input class="form-control" name="Code" type="text">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="changes">Changes</label>
+                <textarea class="form-control" name="Changes" id="changes"></textarea>
+            </div>
+            <button class="btn btn-danger" type="submit">Send</button>
+        </form>
+    </section>
+
+    @section Scripts {
+    <script src="~/js/advisor.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

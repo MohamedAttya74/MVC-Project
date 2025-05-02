@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Student Schedule";
+    var schedule = ViewData["Schedule"] as IEnumerable<StudentSchedule>;
+    var groupedSchedule = schedule?.GroupBy(s => s.Day) ?? new List<IGrouping<string, StudentSchedule>>();
+    var group = ViewData["group"];
+}
+
+<section class="student">
+    <div id="searchResults">
+        <div class="container py-3" id="report">
+        <div class="heading-schedule d-flex justify-content-between align-items-center">
+            <p class="p-0 fs-5 fw-bold semester">
+                Semester of <span id="semester">@schedule?.FirstOrDefault().Semester</span>
+                <span id="academicyear">@schedule?.FirstOrDefault().AcademicYear</span>
+            </p>
+            <img src="../images/Mti(Gray).png" alt="" style="width: 100px;">
+        </div>
+        <h1 class="heading text-center m-1">Schedule of Classes</h1>
+        <div class="w-100 mt-1 d-flex justify-content-around">
+            <p class="fs-3 fw-bold mb-0">Level: <span id="level">@schedule?.FirstOrDefault().Level</span> 
+                <span id="dep"></span> | <span>@group</span>
+            </p>
+        </div>
+        <div class="schedule m-auto text-start" style="width: 1200px;">
+            @if (!groupedSchedule.Any())
+            {
+                <p class="text-center text-muted">No schedule available</p>
+            }
+            else
+            {
+                @foreach (var daySchedule in groupedSchedule)
+                {
+                    <p class="day fs-5 fw-bold">@daySchedule.Key</p>
+                    <table class="table scheduleTable" style="height: 50px;">
+                        <thead>
+                            <tr class="table-secondary">
+                                <th>Code</th>
+                                <th>Course Title</th>
+                                <th>Instructor</th>
+                                <th>Place</th>
+                                <th>Type</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var row in daySchedule)
+                            {
+                                <tr>
+                                    <td class="text-start">@row.CourseCode</td>
+                                    <td class="text-start" style="width: fit-content;">@row.Course?.CourseName </td>
+                                    <td class="text-start" style="width: fit-content;">
+                                            @row.FacultyMember?.FullName
+                                    </td>
+                                        <td class="text-start" style="width: fit-content;">@row.Place?.PlaceName</td>
+                                        <td class="text-start">@row.Place?.Type</td>
+                                        <td class="text-start">@row.TimeBegin.ToString(@"hh\:mm") - @row.TimeEnd.ToString(@"hh\:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+        <div class="m-auto my-4 text-center ">
+            <button class="btn btn-large btn-primary" onclick="printContainer()">Print</button>
+        </div>
+    </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/print.js"></script>
+}

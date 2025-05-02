@@ -1,0 +1,57 @@
+﻿@{
+	ViewData["Title"] = "Statistics";
+}
+
+<section class="financial-manager" id="searchResults">
+    <div class="container py-3" id="report">
+        <h1 class="mb-4 fs-2">Financial Statistics</h1>
+        <table class="table table-hover w-75">
+            <thead>
+                <tr class="table-secondary">
+                    <th>#</th>
+                    <th>Student ID</th>
+                    <th>College</th>
+                    <th>Academic Year</th>
+                    <th>Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>97100</td>
+                    <td>Computer Science</td>
+                    <td>2021-2022</td>
+                    <td>20,000LE</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>94155</td>
+                    <td>Computer Science</td>
+                    <td>2022-2023</td>
+                    <td>25,000LE</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>94170</td>
+                    <td>Computer Science</td>
+                    <td>2022-2023</td>
+                    <td>25,000LE</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 class="mt-3 mb-4 fs-2">Statistics Graph</h1>
+        <div class="chart-container my-2">
+            <canvas id="salesChart"></canvas>
+        </div>
+        <!-- Print Button -->
+        <div>
+            <button class="btn btn-primary btn-lg m-auto" onclick="printContainer()">Print</button>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="/lib/chart.js-4.4.8/package/dist/chart.umd.js"></script>
+	<script src="/js/chart.js"></script>
+    <script src="~/js/print.js"></script>
+}

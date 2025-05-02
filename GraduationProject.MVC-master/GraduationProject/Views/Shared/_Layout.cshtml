@@ -1,0 +1,263 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<GPUser> SignInManager;
+@inject UserManager<GPUser> userManager;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ADAAP</title>
+    <link rel="shortcut icon" href="~/images/advisorylogo no stroke .png" type="image/x-icon">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-6.7.2/css/all.min.js" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GraduationProject.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img class="nav-logo" src="~/images/advisorylogo no stroke .png"
+                    alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="StudentAffairs" asp-action="NewApplication">Apply</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                            </li> 
+                            <li class="nav-item"> 
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ShowRequests">Requests</a> 
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Admin" asp-action="CoursesReport">Courses Report</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Admin" asp-action="DepartmentsReport">Departments Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Advisor"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Advisor" asp-action="SemesterInfoPage">Semester Info</a>
+                            </li>
+                            @* <li class="nav-item">  *@
+                            @*     <a class="nav-link text-dark" asp-area="" asp-controller="Advisor" asp-action="InstructorInfoPage">Instructor Schedule</a>  *@
+                            @* </li>  *@
+                            
+                            <li class="nav-item"> 
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Advisor" asp-action="Dashboard">Dashboard</a> 
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Advisor" asp-action="Requests">Requests</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Advisor" asp-action="IndividualStudentProgress">Student Progress Report</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Advisor" asp-action="StudentDistributionReport">Student Distribution Report</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Advisor" asp-action="StudentGrades">Student Grades Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor")) //done
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Instructor" asp-action="InstructorSchedule">Instructor Schedule</a>
+                            </li>
+                        }
+                        @if(SignInManager.IsSignedIn(User) && User.IsInRole("Dean")) {
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Instructor" asp-action="ShowSchedulesDean">Staff Schedules</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Instructor" asp-action="CourseEnrollmentReport">Course Enrollment Report</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Instructor" asp-action="TeachingHoursDean">Teaching Hours Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Head"))
+                        {
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Instructor" asp-action="ShowSchedulesHead">Staff Schedules</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Instructor" asp-action="TeachingHoursHead">Teaching Hours Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student")) //done
+                        {
+                            <li class="nav-item"> 
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="StudentSchedule">Student Schedule</a> 
+                            </li>
+                        }
+                        
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Assistant")) //done
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Instructor" asp-action="AssistantSchedule">Assistant Schedule</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("ManagerOfFinancialAffairs")) //done
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FinancialAffairs" asp-action="ManagerStats">Statistics</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("FinancialAffairs")) //done
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FinancialAffairs" asp-action="PaymentDetails">Payment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FinancialAffairs" asp-action="PetitonRequest">Petiton Request</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="FinancialAffairs" asp-action="RevenueReport">Revenue Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("ManagerOfStudentAffairs"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="StudentAffairs" asp-action="ManagerStats">Statistics</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("StudentAffairs"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="StudentAffairs" asp-action="ApplicationTable">Applications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="StudentAffairs" asp-action="ReceiptTable">Receipts</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="StudentAffairs" asp-action="AdmissionReport">Admission Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("FollowUp"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FollowUp" asp-action="FollowUpSchedule">Follow Up Schedule</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="nav-icons navbar-nav mb-2 mb-lg-0">
+                        @if (SignInManager.IsSignedIn(User)) //done
+                        {
+
+                            <li class="nav-item align-content-center">
+                                <a class="nav-link text-dark" asp-controller="Auth" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        { //done
+                            <li class="nav-item align-content-center">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                            </li>
+
+                        }
+                        <li class="nav-item align-content-center">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="border border-dark-subtle rounded-circle p-2 d-flex justify-content-center align-items-center fa-regular fa-bell"></i>
+                            </a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                            <li class="nav-item align-content-center">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="ShowProfile">
+                                    <i class="border border-dark-subtle rounded-circle p-2 d-flex justify-content-center align-items-center fa-regular fa-user"></i>
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item align-content-center">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Help">
+                                <i class="border border-dark-subtle rounded-circle p-2 d-flex justify-content-center align-items-center fa-solid fa-question"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="position-relative border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - ADAAP
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/fontawesome-6.7.2/js/all.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

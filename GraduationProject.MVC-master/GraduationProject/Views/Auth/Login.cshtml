@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Login";
+}
+@model LoginVM
+<div class="container login">
+        <div class="image w-100 d-flex justify-content-center align-items-center mb-5">
+            <img src="~/images/advisorylogo no stroke .png" alt="">
+        </div>
+        <div class="m-auto">
+            <form class="w-50 m-auto" asp-controller="Auth" asp-action="Login" method="post">
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                    <label for="floatingEmail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input name="Password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="d-block btn btn-primary w-25 m-auto" type="submit">Log In</button>
+            </form>
+            <p class="fs-6 text-dark m-auto p-3 d-block"><a asp-controller="Auth" 
+                asp-action="ForgetPassword" class="text-decoration-none text-dark">Forget Password?</a></p>
+        </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

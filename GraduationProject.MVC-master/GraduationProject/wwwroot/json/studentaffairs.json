@@ -1,0 +1,35 @@
+[
+  {
+    "SSN": "4455667788990011",
+    "FirstName": "Ali",
+    "MiddleName": "Youssef",
+    "LastName": "Mahmoud",
+    "Salary": 4700.00,
+    "MobilePhone": "01022334455",
+    "Address": "Cairo, Nasr City",
+    "Gender": 0,
+    "ManagerId": null
+  },
+  {
+    "SSN": "5566778899081122",
+    "FirstName": "Laila",
+    "MiddleName": "Karim",
+    "LastName": "Nabil",
+    "Salary": 4800.50,
+    "MobilePhone": "01155667788",
+    "Address": "Alexandria, Smouha",
+    "Gender": 1,
+    "ManagerId": 1
+  },
+  {
+    "SSN": "5562778899001122",
+    "FirstName": "Dana",
+    "MiddleName": "Karim",
+    "LastName": "Mohamed",
+    "Salary": 4800.50,
+    "MobilePhone": "01155667788",
+    "Address": "Alexandria, Smouha",
+    "Gender": 1,
+    "ManagerId": 1
+  }
+]
