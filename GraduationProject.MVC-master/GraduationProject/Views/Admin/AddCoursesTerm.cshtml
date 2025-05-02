@@ -12,14 +12,14 @@
             <label for="TermId">Select Term</label>
             <select asp-for="TermId" class="form-control">
                 <option value="">-- Select Term --</option>
-                @foreach (var term in Model.AvailableTerms)
+                @foreach (var term in Model.AvailableTerms)   
                 {
                     <option value="@term.Id">
                         @term.AcademicYear - Level @term.Level - Semester @term.Semester
                     </option>
                 }
             </select>
-        </div>
+        </div>  
 
         <table class="table table-bordered" id="coursesTable">
             <thead>
